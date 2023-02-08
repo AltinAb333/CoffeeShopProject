@@ -12,27 +12,27 @@ public class CoffeeController {
     @Autowired
     CoffeeService coffeeService;
 
-    @GetMapping("/post")
+    @GetMapping("/coffee")
     public List<Coffee> getAll() {
         return coffeeService.findAll();
     }
-    @GetMapping("/post/{id}")
+    @GetMapping("/coffee/{id}")
     public Coffee getOneById(@PathVariable Integer id) {
         return coffeeService.findById(id);
     }
 
-    @PostMapping("/post")
-    public Coffee create(@RequestBody String payload) {
-        return coffeeService.create(payload);
+    @PostMapping("/coffee")
+    public Coffee create(@RequestBody Coffee coffee) {
+        return coffeeService.create(coffee.getName(), coffee.getPrice(), coffee.getType());
     }
 
-    @PutMapping("/post/{id}")
+    @PutMapping("/coffee/{id}")
     public Coffee edit(@PathVariable Integer id,
-                     @RequestBody EditInput input) {
-        return coffeeService.edit(id, input.getText());
+                     @RequestBody Coffee coffee) {
+        return coffeeService.edit(id, coffee.getName(), coffee.getPrice(), coffee.getType());
     }
 
-    @DeleteMapping("/post/{id}")
+    @DeleteMapping("/coffee/{id}")
     public void delete(@PathVariable Integer id) {
         coffeeService.delete(id);
     }

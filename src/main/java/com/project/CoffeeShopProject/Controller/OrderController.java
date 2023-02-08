@@ -25,8 +25,8 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public Orders create(@RequestBody String payload) {
-        return ordersService.create(payload);
+    public Orders create(@RequestBody Orders orders) {
+        return ordersService.create(orders.getName(), orders.getCoffee(), orders.getType(), orders.getTotalPrice());
     }
 
     @PutMapping("/orders/{id}")

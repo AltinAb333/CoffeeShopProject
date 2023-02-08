@@ -1,5 +1,6 @@
 package com.project.CoffeeShopProject.Services;
 
+import com.project.CoffeeShopProject.Pojo.Coffee;
 import com.project.CoffeeShopProject.Pojo.CoffeeType;
 import com.project.CoffeeShopProject.Pojo.Orders;
 import com.project.CoffeeShopProject.Repository.OrdersRepo;
@@ -26,11 +27,12 @@ public class OrdersServiceImpl implements OrdersService{
     }
 
     @Override
-    public Orders create(String text) {
+    public Orders create(String name, Coffee coffee, CoffeeType coffeeType, Double totalPrice) {
         Orders orders = new Orders();
-        orders.setName(text);
+        orders.setName(name);
         orders.setDate(new Date());
-        orders.setType(CoffeeType.TEST);
+        orders.setType(coffeeType);
+        orders.setTotalPrice(totalPrice);
 
         return ordersRepo.save(orders);
     }

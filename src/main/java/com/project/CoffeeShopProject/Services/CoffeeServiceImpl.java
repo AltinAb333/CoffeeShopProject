@@ -1,6 +1,7 @@
 package com.project.CoffeeShopProject.Services;
 
 import com.project.CoffeeShopProject.Pojo.Coffee;
+import com.project.CoffeeShopProject.Pojo.CoffeeType;
 import com.project.CoffeeShopProject.Repository.CoffeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,18 +25,22 @@ public class CoffeeServiceImpl implements CoffeeService{
     }
 
     @Override
-    public Coffee create(String text) {
+    public Coffee create(String name, Double price, CoffeeType coffeeType) {
         Coffee coffee = new Coffee();
-        coffee.setName(text);
+        coffee.setName(name);
+        coffee.setPrice(price);
+        coffee.setType(coffeeType);
 
         return coffeeRepo.save(coffee);
     }
 
     @Override
-    public Coffee edit(Integer id, String text) {
+    public Coffee edit(Integer id, String name, Double price, CoffeeType coffeeType) {
         Coffee coffee = coffeeRepo.findCoffeeById(id);
         if (coffee != null) {
-            coffee.setName(text);
+            coffee.setName(name);
+            coffee.setPrice(price);
+            coffee.setType(coffeeType);
             return coffeeRepo.save(coffee);
         }
 
